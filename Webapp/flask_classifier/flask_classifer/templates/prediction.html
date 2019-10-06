@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<div>
+    <h1>Prediction</h1>
+    {%with messages = get_flashed_messages(with_categories=true)%}
+    {%if messages%}
+    {%for category, message in messages%}
+    <div class="alert alert-{{category}}"> {{message}} </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+    <img src="{{url_for('uploaded_file', filename=filename)}}" height="224" width="224" align="middle">
+</div>
+
+<div class="table-responsive">
+    <div class="alert alert-info">This furniture is likely {{predicted_class}}</div>
+        
+    Here are the probabilities in %:
+    <table>
+        </tr>
+        {% for key, value in probabilities.items() %}
+        <tr>
+            <th> {{ key }} </th>
+            <td> {{ value }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+If you think the algorithm has not predicted correctly. Can you help tell us what style ofurniture is it.
+
+
+{% endblock %}

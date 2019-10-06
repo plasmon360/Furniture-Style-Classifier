@@ -1,0 +1,52 @@
+{%extends "layout.html" %}
+
+{% block content %}
+<form method ="POST" enctype="multipart/form-data">
+    {{form.csrf_token}}
+    <fieldset class="form-group">
+        <legend class = "border-bottom mb-4">Upload File/URL of your Furniture</legend>
+        <div class = "form-group">
+            {%if form.upload.errors %}    
+            {{form.upload(class = "form-control-file is-invalid")}}
+            <div class = "invalid-feedback">
+                {% for error in form.upload.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+            {%else%}
+            {{form.upload(class = "form-control-file")}}
+            {%endif%}
+        </div>
+        <div class = "form-group">
+            {{form.submit(class="btn btn-primary")}}
+        </div>
+
+
+    </fieldset>
+</form>
+
+or paste a URL
+
+<form method ="POST" enctype="multipart/form-data">
+    {{url_form.csrf_token}}
+    <fieldset class="form-group">
+        <legend class = "border-bottom mb-4">Enter URL of your Furniture Photo</legend>
+        <div class = "form-group">
+            {%if url_form.URL_str.errors %}    
+            {{url_form.URL_str(class = "form-control-file is-invalid")}}
+            <div class = "invalid-feedback">
+                {% for error in url_form.URL_str.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+            {%else%}
+            {{url_form.URL_str(class = "form-control-file", id = "URL")}}
+            {%endif%}
+        </div>
+        <div class = "form-group">
+            {{url_form.submit(class="btn btn-primary")}}
+        </div>
+
+    </fieldset>
+</form>
+{% endblock content%}
