@@ -47,13 +47,12 @@ def get_prediction(img):
         logit = net.forward(tensor)
         out = F.softmax(logit, dim=1).squeeze()
         probs, idx = out.sort(descending=True)
-        predicted_class = classes[idx[0]] 
+        predicted_class = classes[idx[0]]
         probabilities = {}
         for label, prob in zip([classes[i] for i in idx], probs):
             probabilities[label] = round(prob.item() * 100, 4)
-    except Exception as e: 
+    except Exception as e:
         print(str(e))
         predicted_class = 'Unable to predict'
         probabilities = {}
-    return predicted_class, probabilities   
-
+    return predicted_class, probabilities

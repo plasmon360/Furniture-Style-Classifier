@@ -6,7 +6,7 @@ from flask import (flash, redirect, render_template, request,
                    send_from_directory, url_for)
 from werkzeug.utils import secure_filename
 from flask_classifer import app, db, prediction
-from flask_classifer.forms_models import URL, PhotoForm, PhotoUpload
+from flask_classifer.forms_models import URL, PhotoForm, PhotoUpload, User_submission_form
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -60,6 +60,7 @@ def prediction_result():
     data = PhotoUpload.query.filter_by(filename=filename).first()
     return render_template('prediction.html',
                            title='Prediction',
+                           form=User_submission_form(),
                            filename=data.filename,
                            predicted_class=data.predicted_class,
                            probabilities=json.loads(data.probabilities))
