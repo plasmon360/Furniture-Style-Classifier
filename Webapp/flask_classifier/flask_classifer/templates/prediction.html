@@ -15,9 +15,9 @@
 </div>
 
 <div class="table-responsive">
-    {%if {{predicted_class}} == "Unable to predict"%}
+    {%if predicted_class == "Unable to predict"%}
     <div class="alert alert-danger">Unable to predict a furniture Style</div>
-    {%elseif%}
+    {%else%}
     <div class="alert alert-info">This furniture is likely {{predicted_class}}</div>
     Here are the probabilities in %:
     <table>

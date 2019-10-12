@@ -1,9 +1,9 @@
 from datetime import datetime
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import SubmitField, TextAreaField, validators, SelectField
+from wtforms import SubmitField, TextAreaField, validators, SelectField,ValidationError
 from flask_classifer import db
-
+import requests
 
 class PhotoForm(FlaskForm):
     ''' Form for uploading a photo'''
@@ -15,9 +15,25 @@ class PhotoForm(FlaskForm):
     submit = SubmitField('Submit File')
 
 
+def is_url_image(image_url):
+    ''' Checks the image url is png jpeg or jpg without downloading whole file'''
+    image_formats = ("image/png", "image/jpeg", "image/jpg")
+    r = requests.head(image_url, headers = {
+        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36',
+    })
+    if r.headers["content-type"] in image_formats:
+        return True
+    return False
+
 class URL(FlaskForm):
     ''' Form for submitting an URL'''
     URL_str = TextAreaField(label='URL', validators=[validators.URL()])
+
+    # Check if the url points to an image file
+    def validate_URL_str(form, field):
+        if not is_url_image(field.data):
+            raise ValidationError('Not a valid image URL')
+
     submit = SubmitField('Submit URL')
 
 

@@ -1,3 +1,4 @@
+# TODO Some images are not being predicted properly. Figure out what is causing it.
 import os
 import torch
 from PIL import Image
