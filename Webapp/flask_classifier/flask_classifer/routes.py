@@ -22,7 +22,7 @@ def home():
         ''' Makes Prediction and add the prediction to database'''
         predicted_class, probabilities = prediction.get_prediction(image_bytes)
         db.session.add(
-            ImageUpload(filename=filename,
+            ImageModel(filename=filename,
                         probabilities=json.dumps(probabilities),
                         predicted_class=predicted_class))
         db.session.commit()
@@ -75,7 +75,7 @@ def prediction_result():
     ''' Displays the prediction result and takes input from user if the prediction is wrong '''
     user_form = UserSubmissionForm()
     filename = request.args.get('filename')
-    data = ImageUpload.query.filter_by(filename=filename).first()
+    data = ImageModel.query.filter_by(filename=filename).first()
     if user_form.validate_on_submit():
         user_input = user_form.selection.data
         data.user_input = user_input
