@@ -1,9 +1,11 @@
 # TODO Some images are not being predicted properly. Figure out what is causing it.
 import os
+
 import torch
 from PIL import Image
 from torch.nn import functional as F
 from torchvision import models, transforms
+
 from flask_classifer import app
 from pytorch_utils.model_utils import transfer_learning_model
 
@@ -20,25 +22,22 @@ def transform_image(img):
     return my_transforms(image).unsqueeze(0)
 
 
-class_mapping = {
-    'Arts and Crafts': 0,
-    'Mid-century-model': 1,
-    'Rustic': 2,
-    'Traditional': 3
-}
-
-classes = ['Arts and Crafts', 'Mid-Century Modern', 'Rustic', 'Traditional']
+CLASSES = ['Arts and Crafts', 'Mid-Century Modern', 'Rustic', 'Traditional']
 
 print('Loading Transfer Learning Model')
 
+# Make a  empty CNN model
 net = transfer_learning_model(model_original=models.resnet34(pretrained=False),
                               number_classes=4)
 
+# Load a precomputed checkpoint weights
 checkpoint = torch.load(os.path.join(app.instance_path,
                                      'Checkpoints/checkpoint.pth'),
                         map_location=torch.device("cpu"))
 
 net.load_state_dict(checkpoint['model'])
+
+# Put the model in eval mode, so that it doent calculate gradients
 net.eval()
 
 
@@ -48,9 +47,9 @@ def get_prediction(img):
         logit = net.forward(tensor)
         out = F.softmax(logit, dim=1).squeeze()
         probs, idx = out.sort(descending=True)
-        predicted_class = classes[idx[0]]
+        predicted_class = CLASSES[idx[0]]
         probabilities = {}
-        for label, prob in zip([classes[i] for i in idx], probs):
+        for label, prob in zip([CLASSES[i] for i in idx], probs):
             probabilities[label] = round(prob.item() * 100, 4)
     except Exception as e:
         print(str(e))
