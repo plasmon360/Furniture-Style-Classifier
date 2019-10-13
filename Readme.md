@@ -8,9 +8,10 @@
 ### Webapp Screenshots: 
 
 Home Page:
-![alt text](https://github.com/plasmon360/Furniture-Style-Classifier/blob/master/Webapp/flask_classifier/home_snapshot.png "Home Page on Mobile")
 
 Prediction/Feedback Page:
-![alt text](https://github.com/plasmon360/Furniture-Style-Classifier/blob/master/Webapp/flask_classifier/prediction_snapshot.png "Precition/Feedback Page on Mobile")
  
+Home Page                 |  Prediction/Feedback Page
+:-------------------------:|:-------------------------:
+![alt text](https://github.com/plasmon360/Furniture-Style-Classifier/blob/master/Webapp/flask_classifier/home_snapshot.png "Home Page on Mobile") | ![alt text](https://github.com/plasmon360/Furniture-Style-Classifier/blob/master/Webapp/flask_classifier/prediction_snapshot.png "Precition/Feedback Page on Mobile")
 
