@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="table-responsive">
+
+<div>
+    <h2>Prediction</h2>
+    {%with messages = get_flashed_messages(with_categories=true)%}
+    {%if messages%}
+    {%for category, message in messages%}
+    <div class="alert alert-{{category}}"> {{message}} </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+    <div class="row">
+    <img class ="mx-auto img-responsive" src="{{url_for('uploaded_file', filename=filename)}}" height="224" width="224" >
+    </div>
+
+    <div class="row mt-2">
+    {%if predicted_class == "Unable to predict"%}
+    <div class="alert alert-danger">Unable to predict a furniture Style</div>
+    {%else%}
+    <div class="alert alert-info">This furniture is likely {{predicted_class}}</div>
+    </div>
+
+    Here are the probabilities in %:
+    <table>
+        </tr>
+        {% for key, value in probabilities.items() %}
+        <tr>
+            <th> {{ key }} </th>
+            <td> {{ value }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {%endif%}
+</div>
+
+<form method ="POST" enctype="multipart/form-data">
+    {{form.csrf_token}}
+    <fieldset class="form-group">
+        <legend class = "border-bottom mb-4"></legend>
+            If you think the algorithm has not predicted correctly. Please let us know what is the correct label for your photo.{{form.selection}}
+            {{form.submit(class="btn btn-primary")}}
+    </fieldset>
+</form>
+
+
+{% endblock %}

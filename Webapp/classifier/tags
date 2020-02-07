@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+PhotoForm	forms_models.py	/^class PhotoForm(FlaskForm):$/;"	c
+PhotoUpload	forms_models.py	/^class PhotoUpload(db.Model):$/;"	c
+SECRET_KEY	__init__.py	/^    SECRET_KEY="powerful secretkey",$/;"	v
+URL	forms_models.py	/^class URL(FlaskForm):$/;"	c
+URL_str	forms_models.py	/^    URL_str= TextAreaField(label='URL',$/;"	v	class:URL
+WTF_CSRF_SECRET_KEY	__init__.py	/^    WTF_CSRF_SECRET_KEY="a csrf secret key"$/;"	v
+__repr__	forms_models.py	/^        def __repr__(self):$/;"	m	class:PhotoUpload	file:
+app	__init__.py	/^app = Flask(__name__)$/;"	v
+checkpoint	prediction.py	/^checkpoint = torch.load(os.path.join(app.instance_path,'Checkpoints\/checkpoint.pth') $/;"	v
+class_mapping	prediction.py	/^class_mapping = {'Arts and Crafts': 0,$/;"	v
+classes	prediction.py	/^classes = ['Arts and Crafts', 'Mid-Century Modern', 'Rustic', 'Traditional']$/;"	v
+db	__init__.py	/^db = SQLAlchemy(app)$/;"	v
+filename	forms_models.py	/^        filename = db.Column(db.String(20),unique = False,nullable=False)$/;"	v	class:PhotoUpload
+get_prediction	prediction.py	/^def get_prediction(image_bytes, critical_probability = 0.2):$/;"	f
+home	routes.py	/^def home():$/;"	f
+id	forms_models.py	/^        id = db.Column(db.Integer, primary_key=True, autoincrement=True)$/;"	v	class:PhotoUpload
+imagenet_stats	prediction.py	/^imagenet_stats = ([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])$/;"	v
+model_original	prediction.py	/^    model_original=models.resnet34(pretrained=False), number_classes=4)$/;"	v
+net	prediction.py	/^net = transfer_learning_model($/;"	v
+predicted_class	forms_models.py	/^        predicted_class= db.Column(db.String(20),unique = False,nullable=True)$/;"	v	class:PhotoUpload
+prediction_result	routes.py	/^def prediction_result():$/;"	f
+probabilities	forms_models.py	/^        probabilities = db.Column(db.String(100), unique = False, nullable=True)$/;"	v	class:PhotoUpload
+submit	forms_models.py	/^    submit = SubmitField('Submit File')$/;"	v	class:PhotoForm
+submit	forms_models.py	/^    submit = SubmitField('Submit URL')$/;"	v	class:URL
+transform_image	prediction.py	/^def transform_image(image_bytes):$/;"	f
+upload	forms_models.py	/^    upload = FileField(label='Upload Furniture Picture',$/;"	v	class:PhotoForm
+uploaded_file	routes.py	/^def uploaded_file(filename):$/;"	f
+uploaded_time	forms_models.py	/^        uploaded_time = db.Column(db.DateTime(),default=datetime.utcnow)$/;"	v	class:PhotoUpload
+user_input	forms_models.py	/^        user_input = db.Column(db.String(20),unique=False, nullable=True)$/;"	v	class:PhotoUpload
+validators	forms_models.py	/^                        validators =[FileRequired(), FileAllowed(['png','jpg','jpeg'],'Images only!')])$/;"	v	class:PhotoForm
+validators	forms_models.py	/^                       validators =[validators.URL()])$/;"	v	class:URL
