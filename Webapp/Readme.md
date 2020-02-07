@@ -1,5 +1,7 @@
 
-Before running the app make a folder ../Webapp/flask_classifier/instance/uploads
+Before running the app make a folder ../Webapp/instance/uploads
+this is not version controlled and specific to an instance 
+
 
 For SQLITE
 

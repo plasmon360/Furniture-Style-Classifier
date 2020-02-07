@@ -9,7 +9,7 @@ from torchvision import models, transforms
 from classifier import app
 from pytorch_utils.model_utils import transfer_learning_model
 
-
+from flask import url_for
 def transform_image(img):
     ''' img can be image bytes or image filepath'''
     IMAGENET_STATS = ([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
@@ -31,8 +31,7 @@ net = transfer_learning_model(model_original=models.resnet34(pretrained=False),
                               number_classes=4)
 
 # Load a precomputed checkpoint weights
-checkpoint = torch.load(os.path.join(app.instance_path,
-                                     'Checkpoints/checkpoint.pth'),
+checkpoint = torch.load('./classifier/checkpoints/checkpoint.pth',
                         map_location=torch.device("cpu"))
 
 net.load_state_dict(checkpoint['model'])
