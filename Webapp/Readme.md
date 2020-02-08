@@ -1,20 +1,21 @@
 
 Before running the app make a folder ../Webapp/instance/uploads
 this is not version controlled and specific to an instance 
+Also create a file name called ../Webapp/instance/application.cfg (see more details in ../Webapp/gcp_gae_notes.py)
 
 
-For SQLITE
+For SQLITE and MYSQL ()
 
-Inside the venv,when you run python3 run_app.py for the first time it will create a database images.db 
+    Inside the venv,when you run python3 run_app.py for the first time it will create a database images.db 
 
-but when you do prediction, there may be sqlalchemy error saying no table found. 
+    but when you do prediction, there may be sqlalchemy error saying no table found. 
 
-The table need to be created for the first time. 
+    The table need to be created for the first time. 
 
-go to python3 repl and issue following command
+    go to python3 repl and issue following command
 
-from classifier import db 
-db.create_all()
-exit()
+    from classifier import db 
+    db.create_all()
+    exit()
 
 

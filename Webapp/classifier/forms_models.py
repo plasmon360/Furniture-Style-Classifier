@@ -58,7 +58,7 @@ class UserSubmissionForm(FlaskForm):
 class ImageModel(db.Model):
     '''Data model for uploaded photo or URL'''
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    filename = db.Column(db.String(20), unique=False, nullable=False)
+    filename = db.Column(db.Text, unique=False, nullable=False)
     uploaded_time = db.Column(db.DateTime(), default=datetime.utcnow)
     probabilities = db.Column(db.String(100), unique=False, nullable=True)
     predicted_class = db.Column(db.String(20), unique=False, nullable=True)
