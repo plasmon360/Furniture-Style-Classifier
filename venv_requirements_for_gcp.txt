@@ -11,7 +11,7 @@ Flask-WTF==0.14.2
 isort==4.3.21
 itsdangerous==1.1.0
 jedi==0.15.1
-Jinja2==2.10.1
+Jinja2==2.11.3
 joblib==0.13.2
 kiwisolver==1.1.0
 lazy-object-proxy==1.4.2
